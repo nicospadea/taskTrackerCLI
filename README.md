@@ -1,7 +1,9 @@
 # taskTrackerCLI
 
-In this repository I will develop a simple CLI task tracker in PHP and Python just for practicing my coding skills. 
+This simple app manages tasks / todo things via CLI. 
 
-
-The requirements are displayed on: 
-https://roadmap.sh/projects/task-tracker
+## Usage:
+php taskTracker.php add <title> <description> - Add a new task
+php taskTracker.php delete <id> - Delete a task
+php taskTracker.php complete <id> - Complete a task
+php taskTracker.php list - List all tasks
