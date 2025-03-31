@@ -46,9 +46,9 @@ class CLI {
     }
     private static function showHelp() {
         echo "Usage:\n";
-        echo "php taskTracker.php add <title> <description> - Add a new task";
-        echo "Usage: php taskTracker.php delete <id> - Delete a task";
-        echo "Usage: php taskTracker.php complete <id> - Complete a task";
-        echo "Usage: php taskTracker.php list - List all tasks";
+        echo "php taskTracker.php add <title> <description> - Add a new task\n";
+        echo "php taskTracker.php delete <id> - Delete a task\n";
+        echo "php taskTracker.php complete <id> - Complete a task\n";
+        echo "php taskTracker.php list - List all tasks\n";
     }
 }

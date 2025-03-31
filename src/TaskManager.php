@@ -1,5 +1,6 @@
 <?php
 
+require_once('Task.php');
 class TaskManager { 
     private $file = __DIR__ . '/../tasks.json';
     private $tasks = [];
@@ -20,27 +21,33 @@ class TaskManager {
         echo "Task added: $title\n";
     }
 
-    public function listTasks() { 
-        if (empty($this-> tasks)) {
-            echo "There are no tasks yet.";
+    public function listTasks() {
+        if (empty($this->tasks)) {
+            echo "There are no tasks yet.\n";
+            return;
         }
+    
+        echo "ID  | TITLE               | STATUS\n";
+        echo "----------------------------------\n";
+    
         foreach ($this->tasks as $task) {
-            echo $task["title"] ."". $task["description"];
+            $status = $task['completed'] ? '✔ Completed' : '✗ Pending';
+            printf("%-3d | %-20s | %s\n", $task['id'], $task['title'], $status);
         }
-        return;
     }
-
+    
     public function completeTask($id) { 
-        $index = array_search($id, $this->tasks);
-        if ($index !== false) {
-            $this-> tasks[$index][5] = true;
-            $this-> tasks[$index][4] = time();
-
+        foreach ($this->tasks as &$task) {
+            if ($task['id'] == $id) {
+                $task['completed'] = true;
+                $task['completed_at'] = time(); // Guardamos la fecha de completado
+                $this->saveTasks();
+                echo "Task $id marked as completed.\n";
+                return;
+            }
         }
-        else { 
-            echo "Task not found.";
-        }
-        return;      
+    
+        echo "Task not found.\n";
     }
 
     public function deleteTask($id) {
